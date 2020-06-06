@@ -9,9 +9,10 @@ function blogPost({ pageContext }) {
   return (
     <Layout>
       <div>
-        <h1>{article.text}</h1>
-        <h1>{article.url}</h1>
         <h1>{article.title}</h1>
+        <div dangerouslySetInnerHTML={{__html: article.text}}>
+        </div>
+        <h1>{article.url}</h1>
       </div>
     </Layout>
   )
