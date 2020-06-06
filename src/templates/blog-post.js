@@ -12,7 +12,6 @@ function blogPost({ pageContext }) {
         <h1>{article.text}</h1>
         <h1>{article.url}</h1>
         <h1>{article.title}</h1>
-        <h1>{article.postID}</h1>
       </div>
     </Layout>
   )

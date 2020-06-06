@@ -1,10 +1,13 @@
 const axios = require("axios")
 const path = require('path');
-
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
 
 // Implement the Gatsby API “createPages”. This is called once the
 // data layer is bootstrapped to let plugins create pages from data.
 exports.createPages = async ({ graphql, actions, reporter }) => {
+
     const { createPage } = actions
   
     // Query for markdown nodes to use in creating pages.
@@ -48,10 +51,11 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 
 exports.sourceNodes = async ({ actions, createNodeId, createContentDigest }) => {
+const google_api_key = process.env.GATSBY_GOOGLE_APIKEY;
 const { createNode } = actions
 const fetchFormItems = () =>
     axios.get(
-      `https://sheets.googleapis.com/v4/spreadsheets/1tfg7yW8GKWSHRVGey-o3AQ-fqcKR3aZUqyY2_lE1AB0/values:batchGet?ranges=1&majorDimension=ROWS&key=AIzaSyAvHGj2tlVVdPnqq3stJdYB3sJuT-2h9aQ`
+      "https://sheets.googleapis.com/v4/spreadsheets/1tfg7yW8GKWSHRVGey-o3AQ-fqcKR3aZUqyY2_lE1AB0/values:batchGet?ranges=1&majorDimension=ROWS&key="+google_api_key
     )
 
   const response = await fetchFormItems()

@@ -25,6 +25,12 @@ import Link from "gatsby-link"
 //   console.log("data", rows)
 // }
 // foo()
+//const app_id = process.env.GATSBY_GOOGLESS_URL;
+
+const fee = () => {
+  // console.log("app_id",app_id)
+}
+fee()
 const BlogPage = () => {
   const data = useStaticQuery(graphql`
     {
