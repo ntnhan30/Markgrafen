@@ -14,8 +14,6 @@ function blogPost({ pageContext }) {
           src={`https://drive.google.com/uc?export=view&id=${article.url}`}
          alt=""
 ></img>
-
-
         <div dangerouslySetInnerHTML={{ __html: article.text }}></div>
         <h1>{article.url}</h1>
       </div>
