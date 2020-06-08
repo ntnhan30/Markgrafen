@@ -1,24 +1,47 @@
 import React from "react"
+import { graphql,  } from "gatsby"
+
+import Img from 'gatsby-image'
+
 //import { Link } from "gatsby"
 
 import Layout from "../components/layout"
 // import SEO from "../components/seo"
 
-function blogPost({ pageContext }) {
-  const { article } = pageContext
+const BlogPost = ({ data }) => {
+  // const { article } = pageContext
+  console.log(data)
   return (
     <Layout>
       <div>
-        <h1>{article.title}</h1>
-        <img
-          src={`https://drive.google.com/uc?export=view&id=${article.url}`}
-         alt=""
-></img>
-        <div dangerouslySetInnerHTML={{ __html: article.text }}></div>
-        <h1>{article.url}</h1>
+        <h1>{ data.post.title}</h1>
+  <Img
+              alt=""
+              fluid={data.post.optimized_thumbnail.childImageSharp.fluid}
+            />
+        <div dangerouslySetInnerHTML={{ __html:  data.post.text }}></div>
       </div>
     </Layout>
   )
 }
 
-export default blogPost
+export default BlogPost
+
+export const BlogPostPageQuery = graphql`
+query post ($postIDgit : String!) {
+  post(postID: {eq: $postIDgit }) {
+    url
+    title
+    text
+    optimized_thumbnail {
+      childImageSharp {
+        fluid(maxHeight: 550) {
+          ...GatsbyImageSharpFluid
+        }
+      }
+    }
+  }
+}
+`
+
+

@@ -34,7 +34,7 @@ fee()
 const BlogPage = () => {
   const data = useStaticQuery(graphql`
     {
-      allMyNodeType {
+      allPost {
         edges {
           node {
             text
@@ -48,7 +48,7 @@ const BlogPage = () => {
     <Layout>
       <div>
         <h1>Blog</h1>
-        {data.allMyNodeType.edges.map(i => {
+        {data.allPost.edges.map(i => {
           return( 
             <Link to={`article/${i.node.postID}`}><h2>{i.node.text}</h2></Link>
               )

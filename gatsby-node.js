@@ -14,7 +14,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     const result = await graphql(
       `
       {
-        allMyNodeType {
+        allPost {
           edges {
             node {
                 postID
@@ -36,7 +36,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   
     // Create pages for each markdown file.
     const blogPostTemplate = path.resolve(`src/templates/blog-post.js`)
-    result.data.allMyNodeType.edges.forEach(({ node }) => {
+    result.data.allPost.edges.forEach(({ node }) => {
       const path =  `/article/${node.postID}`
       createPage({
         path,
@@ -44,7 +44,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
         // In your blog post template's graphql query, you can use pagePath
         // as a GraphQL variable to query for data from the markdown file.
         context: {
-            article: node,
+          postID: node.postID,
         },
       })
     })
@@ -76,7 +76,7 @@ const fetchFormItems = () =>
         parent: null,
         children: [],
         internal: {
-          type: `MyNodeType`,
+          type: `Post`,
           mediaType: `text/html`,
           content: nodeContent,
           contentDigest: createContentDigest(item),
