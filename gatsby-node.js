@@ -37,7 +37,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     // Create pages for each markdown file.
     const blogPostTemplate = path.resolve(`src/templates/blog-post.js`)
     result.data.allPost.edges.forEach(({ node }) => {
-      const path =  `/article/${node.postID}`
+      const path =  `/post/${node.postID}`
       createPage({
         path,
         component: blogPostTemplate,

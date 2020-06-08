@@ -1,0 +1,12 @@
+
+.galleryWrap {
+    background-color: $base-color;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.item {
+    height: 300px;
+    width: 300px;
+}

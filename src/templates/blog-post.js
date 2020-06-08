@@ -1,7 +1,8 @@
 import React from "react"
 import { graphql,  } from "gatsby"
-
 import Img from 'gatsby-image'
+import Gallery from "../components/gallery"
+
 
 //import { Link } from "gatsby"
 
@@ -21,6 +22,8 @@ const BlogPost = ({ data }) => {
             />
         <div dangerouslySetInnerHTML={{ __html:  data.post.text }}></div>
       </div>
+      <Gallery/>
+
     </Layout>
   )
 }
@@ -28,8 +31,8 @@ const BlogPost = ({ data }) => {
 export default BlogPost
 
 export const BlogPostPageQuery = graphql`
-query post ($postIDgit : String!) {
-  post(postID: {eq: $postIDgit }) {
+query post ($postID : String!) {
+  post(postID: {eq: $postID }) {
     url
     title
     text

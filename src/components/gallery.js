@@ -2,6 +2,8 @@ import React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import Link from "gatsby-link"
 import Img from "gatsby-image"
+import galleryStyles from "./gallery.module.scss"
+
 
 const Gallery = () => {
   const data = useStaticQuery(graphql`
@@ -15,7 +17,7 @@ const Gallery = () => {
             url
             optimized_thumbnail {
               childImageSharp {
-                fluid(maxHeight: 550) {
+                fluid(maxHeight: 200) {
                   ...GatsbyImageSharpFluid
                 }
               }
@@ -26,11 +28,12 @@ const Gallery = () => {
     }
   `)
   return (
-    <div>
+    <div className={galleryStyles.galleryWrap}>
       {/* <h1>Blog</h1> */}
       {data.allPost.edges.reverse().map(i => {
         return (
-          <Link to={`article/${i.node.postID}`}>
+          <div className={galleryStyles.item}>
+          <Link to={`post/${i.node.postID}`}>
             <h2>{i.node.title}</h2>
             {/* <img
           src={`https://drive.google.com/uc?export=view&id=${i.node.url}`}
@@ -41,6 +44,7 @@ const Gallery = () => {
               fluid={i.node.optimized_thumbnail.childImageSharp.fluid}
             />
           </Link>
+          </div>
         )
       })}
     </div>
