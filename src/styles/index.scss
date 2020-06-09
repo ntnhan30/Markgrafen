@@ -1,5 +1,13 @@
-$base-color: #c6538c;
+$base-black: #151515;
+$base-grey: rgb(194, 192, 192);
 
 body {
-   background-color: violet;
+  // background-color: violet;
+  box-sizing: border-box;
+  margin: 0px; 
+}
+
+html {
+   box-sizing: border-box;
+   font-size: 62.5%; // 1rem = 10px;
 }

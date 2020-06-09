@@ -4,7 +4,6 @@ import Link from "gatsby-link"
 import Img from "gatsby-image"
 import galleryStyles from "./gallery.module.scss"
 
-
 const Gallery = () => {
   const data = useStaticQuery(graphql`
     {
@@ -17,7 +16,7 @@ const Gallery = () => {
             url
             optimized_thumbnail {
               childImageSharp {
-                fluid(maxHeight: 200) {
+                fluid(maxWidth: 600, maxHeight: 500) {
                   ...GatsbyImageSharpFluid
                 }
               }
@@ -30,23 +29,28 @@ const Gallery = () => {
   return (
     <div className={galleryStyles.galleryWrap}>
       {/* <h1>Blog</h1> */}
-      {data.allPost.edges.reverse().map(i => {
-        return (
-          <div className={galleryStyles.item}>
-          <Link to={`post/${i.node.postID}`}>
-            <h2>{i.node.title}</h2>
-            {/* <img
-          src={`https://drive.google.com/uc?export=view&id=${i.node.url}`}
-         alt=""
-></img> */}
-            <Img
-              alt=""
-              fluid={i.node.optimized_thumbnail.childImageSharp.fluid}
-            />
-          </Link>
-          </div>
-        )
-      })}
+      {data.allPost.edges
+        .slice()
+        .reverse()
+        .map(i => {
+          return (
+            <div className={galleryStyles.item}>
+              <Link to={`post/${i.node.postID}`}>
+                <div className={galleryStyles.imgDiv}>
+                  <Img
+                    alt=""
+                    fluid={i.node.optimized_thumbnail.childImageSharp.fluid}
+                    imgStyle={{
+                      objectFit: "cover",
+                      objectPosition: "50% 50%",
+                    }}
+                  />
+                </div>
+                <h2>{i.node.title}</h2>
+              </Link>
+            </div>
+          )
+        })}
     </div>
   )
 }

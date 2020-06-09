@@ -1,12 +1,22 @@
-
 .galleryWrap {
-    background-color: $base-color;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+  background-color: $base-black;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding: 5% 10%;
 }
 
-.item {
-    height: 300px;
-    width: 300px;
+.item{
+  //margin:1rem;
+}
+
+.imgDiv {
+  width: 30rem;
+  height: 25rem;
+  position: relative;
+}
+
+a {
+  color: $base-grey;
+  text-decoration: none;
 }
