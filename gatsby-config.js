@@ -1,3 +1,4 @@
+
 module.exports = {
   siteMetadata: {
     title: `Markgrafen Str 7`,
@@ -41,6 +42,14 @@ module.exports = {
         name: 'optimized_thumbnail',
       }
     },
+    {
+      resolve: "gatsby-plugin-remote-images",
+      options: {
+        nodeType: "Pic",
+        imagePath: "url",
+        name: 'pic_thumbnail',
+      }
+    }
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
